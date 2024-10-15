@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import { Button } from '@/components/ui/button.jsx';
+import { Input } from '@/components/ui/input.jsx';
+import VideoCard from './VideoCard.jsx';
+import { videos } from './datat.jsx';
 import {
   Search,
   Menu,
@@ -11,73 +15,7 @@ import {
   HelpCircle,
   Settings,
 } from 'lucide-react';
-import { Button } from '@/components/ui/button.jsx';
-import { Input } from '@/components/ui/input.jsx';
-import VideoCard from './VideoCard.jsx';
 
-const sampleVideos = [
-  {
-    id: 1,
-    thumbnail:
-      'https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    duration: '20:45',
-    title: 'JavaScript Fundamentals: Variables and Data Types',
-    views: '10.3k',
-    uploadTime: '44 minutes ago',
-    channelName: 'Code Master',
-    channelAvatar:
-      'https://images.pexels.com/photos/3532545/pexels-photo-3532545.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-  },
-  {
-    id: 1,
-    thumbnail:
-      'https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    duration: '20:45',
-    title: 'JavaScript Fundamentals: Variables and Data Types',
-    views: '10.3k',
-    uploadTime: '44 minutes ago',
-    channelName: 'Code Master',
-    channelAvatar:
-      'https://images.pexels.com/photos/3532545/pexels-photo-3532545.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-  },
-  {
-    id: 1,
-    thumbnail:
-      'https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    duration: '20:45',
-    title: 'JavaScript Fundamentals: Variables and Data Types',
-    views: '10.3k',
-    uploadTime: '44 minutes ago',
-    channelName: 'Code Master',
-    channelAvatar:
-      'https://images.pexels.com/photos/3532545/pexels-photo-3532545.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-  },
-  {
-    id: 1,
-    thumbnail:
-      'https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    duration: '20:45',
-    title: 'JavaScript Fundamentals: Variables and Data Types',
-    views: '10.3k',
-    uploadTime: '44 minutes ago',
-    channelName: 'Code Master',
-    channelAvatar:
-      'https://images.pexels.com/photos/3532545/pexels-photo-3532545.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-  },
-  {
-    id: 1,
-    thumbnail:
-      'https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    duration: '20:45',
-    title: 'JavaScript Fundamentals: Variables and Data Types',
-    views: '10.3k',
-    uploadTime: '44 minutes ago',
-    channelName: 'Code Master',
-    channelAvatar:
-      'https://images.pexels.com/photos/3532545/pexels-photo-3532545.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-  },
-  // Add more sample videos here...
-];
 export default function NavAndSideBar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -270,9 +208,9 @@ export default function NavAndSideBar() {
         </aside>
         {/* Main Content */}
         <section className='w-full pb-[70px] sm:ml-[70px] sm:pb-0 lg:ml-0'>
-          {sampleVideos.length > 0 ? (
+          {videos.length > 0 ? (
             <div className='grid grid-cols-[repeat(auto-fit,_minmax(300px,_1fr))] gap-4 p-4'>
-              {sampleVideos.map((video) => (
+              {videos.map((video) => (
                 <VideoCard
                   key={video.id}
                   thumbnail={video.thumbnail}
