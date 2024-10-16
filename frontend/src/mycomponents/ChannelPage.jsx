@@ -176,36 +176,6 @@ const VideosTab = () => {
 };
 
 const PlaylistTab = ({ onPlaylistClick }) => {
-  //   const playlists = [
-  //     {
-  //       id: 1,
-  //       title: 'React Mastery',
-  //       videoCount: 12,
-  //       thumbnail:
-  //         'https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-  //       description:
-  //         'Master React with this comprehensive playlist covering advanced concepts and best practices.',
-  //     },
-  //     {
-  //       id: 2,
-  //       title: 'Node.js Essentials',
-  //       videoCount: 8,
-  //       thumbnail:
-  //         'https://images.pexels.com/photos/2519817/pexels-photo-2519817.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-  //       description:
-  //         'Learn the fundamentals of Node.js and server-side JavaScript programming.',
-  //     },
-  //     {
-  //       id: 3,
-  //       title: 'Full Stack Development',
-  //       videoCount: 15,
-  //       thumbnail:
-  //         'https://images.pexels.com/photos/1181298/pexels-photo-1181298.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-  //       description:
-  //         'Become a full stack developer with this comprehensive series covering both front-end and back-end technologies.',
-  //     },
-  //   ];
-
   return (
     <div className='grid gap-4 sm:grid-cols-2 lg:grid-cols-3'>
       {playlistList.map((playlist) => (
@@ -216,7 +186,7 @@ const PlaylistTab = ({ onPlaylistClick }) => {
         >
           <div className='relative'>
             <img
-              src={playlist.thumbnail}
+              src={playlist.videos[0].thumbnail}
               alt={playlist.name}
               className='w-full object-cover'
               style={{ aspectRatio: '16/9' }}
@@ -226,9 +196,9 @@ const PlaylistTab = ({ onPlaylistClick }) => {
             </div>
           </div>
           <div className='p-3'>
-            <h3 className='mb-1 font-semibold'>{playlist.title}</h3>
+            <h3 className='mb-1 font-semibold'>{playlist.name}</h3>
             <p className='text-sm text-gray-400'>
-              {playlist.videoCount} videos
+              {playlist.videos.length} videos
             </p>
           </div>
         </div>
@@ -238,14 +208,6 @@ const PlaylistTab = ({ onPlaylistClick }) => {
 };
 
 const PlaylistDetails = ({ playlist, onBack }) => {
-  //   const videos = [
-  //     { id: 1, title: 'Introduction to React', duration: '10:30' },
-  //     { id: 2, title: 'Components and Props', duration: '15:45' },
-  //     { id: 3, title: 'State and Lifecycle', duration: '20:15' },
-  //     { id: 4, title: 'Handling Events', duration: '12:50' },
-  //     { id: 5, title: 'Conditional Rendering', duration: '18:30' },
-  //   ];
-
   return (
     <div>
       <button
@@ -256,23 +218,22 @@ const PlaylistDetails = ({ playlist, onBack }) => {
         Back to Playlists
       </button>
       <div className='mb-6'>
-        <h2 className='text-2xl font-bold mb-2'>{playlist.title}</h2>
-        <p className='text-gray-400 mb-2'>{playlist.videoCount} videos</p>
+        <h2 className='text-2xl font-bold mb-2'>{playlist.name}</h2>
         <p>{playlist.description}</p>
+        <p className='text-gray-400 mb-2'>{playlist.videos.length} videos</p>
       </div>
-      <div className='space-y-4'>
-        {videos.map((video, index) => (
-          <div
+      <div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3'>
+        {playlist.videos.map((video) => (
+          <VideoCard
             key={video.id}
-            className='flex items-center border-b border-gray-700 pb-2'
-          >
-            <span className='mr-4 text-gray-400'>{index + 1}</span>
-            <Play className='mr-4 h-5 w-5 text-[#ae7aff]' />
-            <div className='flex-grow'>
-              <h3 className='font-semibold'>{video.title}</h3>
-            </div>
-            <span className='text-gray-400'>{video.duration}</span>
-          </div>
+            thumbnail={video.thumbnail}
+            duration={video.duration}
+            title={video.title}
+            views={video.views}
+            uploadTime={video.time}
+            channelName={video.owner.fullName}
+            channelAvatar={video.owner.avatar}
+          />
         ))}
       </div>
     </div>
